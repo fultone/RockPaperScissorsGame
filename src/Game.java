@@ -5,8 +5,7 @@ public class Game {
    Player player2;
    int gameMode;
 
-
-   public void setUpGame(){
+   private void setUpGame(){
       Scanner scan = new Scanner(System.in);
       System.out.println("Let's play rock, paper, scissors!");
       System.out.print("Enter '1' to play Human vs. Human, " +
@@ -20,7 +19,7 @@ public class Game {
       initializePlayers(gameMode);
    }
 
-   public void initializePlayers(int gameMode){
+   private void initializePlayers(int gameMode){
       if (gameMode == 1){
          player1 = new HumanPlayer();
          player2 = new HumanPlayer();
@@ -32,7 +31,7 @@ public class Game {
          player2 = new ComputerPlayer();
       }
    }
-   public void startGame(){
+   private void startGame(){
       player1.makeSelection();
       player2.makeSelection();
       gameCountdown();
@@ -40,7 +39,7 @@ public class Game {
       displayWinner();
    }
 
-   public void gameCountdown(){
+   private void gameCountdown(){
       String[] playGame = {"ROCK ", "PAPER ", "SCISSORS ", "SHOOT!\n"};
       for(int i=0; i<4; i++){
          System.out.print(playGame[i]);
@@ -48,7 +47,7 @@ public class Game {
       }
    }
 
-   public void pauseTerminal(){
+   private void pauseTerminal(){
       try{
          Thread.sleep(500);
       } catch (InterruptedException e){
@@ -56,12 +55,12 @@ public class Game {
       }
    }
 
-   public void displaySelections(){
+   private void displaySelections(){
       System.out.println("Player 1 selected: " + player1.getSelection());
       System.out.println("Player 2 selected: " + player2.getSelection());
    }
 
-   public void displayWinner(){
+   private void displayWinner(){
       if(determineWinner() == player1){
          System.out.println("Player 1 wins!");
       } else if(determineWinner() == player2){
@@ -71,7 +70,7 @@ public class Game {
       }
    }
 
-   public Player determineWinner(){
+   private Player determineWinner(){
       Player winner = new HumanPlayer();
       if(player1.getSelection().equals("rock")){
          if(player2.getSelection().equals("scissors")){
@@ -101,7 +100,7 @@ public class Game {
       return winner;
    }
 
-   public boolean keepPlaying(){
+   private boolean keepPlaying(){
       Scanner scan = new Scanner(System.in);
       System.out.println("Would you like to play again (y/n)?");
       String response = scan.nextLine().toLowerCase();
